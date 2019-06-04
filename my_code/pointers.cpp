@@ -53,11 +53,11 @@ void assignTA(Student* s, Student* ta) {
 
 void printTAs(vector<Student*>& students) {
     for(int i = 0; i < students.size(); ++i){
-        cout << "Student: " << students[i] -> name << ", TA: ";
+        cout << students[i] -> name << " has ";
         if(students[i] -> ta == nullptr){
-            cout << "NONE";
+            cout << "no TA";
         } else {
-            cout << students[i] -> ta -> name;
+            cout << "TA " << students[i] -> ta -> name;
         }
         cout << endl;
     }
