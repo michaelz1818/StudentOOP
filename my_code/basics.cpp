@@ -35,7 +35,7 @@ void fill_vector(vector<int>& v, int n) {
  * Print all elements in a vector. Use a ranged for!
  * */
 void print_vector(const vector<int>& v) {
-    for(int i: v){
+    for(int i : v){
         cout << i << endl;
     }
 }
@@ -45,7 +45,7 @@ void print_vector(const vector<int>& v) {
  * Output should look like "x = 9, y = 2".
  * */
 void print_coords(coord pos) {
-    cout << "pos.x = " << pos.x << ", pos.y = " << pos.y << endl;
+    cout << "x = " << pos.x << ", y = " << pos.y << endl;
 }
 
 /*
@@ -89,7 +89,7 @@ int sum(int n) {
  * Sum from 0 to n using a `for` loop.
  * */
 int sum2(int n) {
-    int result = 0
+    int result = 0;
     for(int i = 0; i < n; ++i){
         result += i;
     }
