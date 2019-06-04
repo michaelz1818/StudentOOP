@@ -90,7 +90,7 @@ int sum(int n) {
  * */
 int sum2(int n) {
     int result = 0
-    for(int i = 0; i < n+1; ++i){
+    for(int i = 0; i < n; ++i){
         result += i;
     }
     return result;
@@ -112,4 +112,8 @@ void pull_apart_string(std::string s) {
     for(char a : s){
         vecString.push_back(a);
     }
+    for(char c: vecString){
+        cout << c << " ";
+    }
+    cout << endl;
 }
