@@ -11,7 +11,12 @@ Weather::Weather(std::string nm, GPS loc):
 station_nm(nm), my_loc(loc) {
 }
 
-ostream& operator << (ostream& os, const Weather& w){
+ostream& operator<<(ostream& os, const GPS& gps){
+    os << "(" << gps.latitude << "," << gps.longitude << ")";
+    return os;
+}
+
+ostream& operator<<(ostream& os, const Weather& w){
     os << "Name: " << w.station_nm << ", Location: " << w.my_loc << ", Rating: " << w.rating << endl;
     return os;
 }
