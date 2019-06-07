@@ -21,16 +21,16 @@
 //    {
 //        cout << "c1 = " << c1 << endl;
 //    }
-//    
+//
 //    Complex c2{43.2, 58.9};
 //    if(DEBUG)
 //    {
 //        cout << "c2 = " << c2 << endl;
 //    }
-//    
+//
 //    // see if `Complex` addition works:
 //    // Complex c3 = c1 + c2;
-//    
+//
 //    Complex c4 = Complex();
 //    // test post-increment:
 //    c4++;
@@ -46,7 +46,7 @@
 //    // test bool() operator:
 //    (c4) ? cout << "c4 is true\n" : cout << "c4 is false\n";
 //    assert(c4);
-//    
+//
 //    /*
 //     * The next line of code will implicitly
 //     * construct a `Complex` out of 14.2 using the default
