@@ -1,6 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "../my_code/weather.h"
 
 using namespace std;
@@ -24,11 +25,11 @@ void get_wreadings(string filenm, Weather& w) {
 int main() {
     Weather irkutsk = Weather("Irkutsk", GPS(46.3, 67.2));
 
-    string filenm;
-    cout << "Input the name of the new readings file:\n";
-    cin >> filenm;
+//    string filenm;
+//    cout << "Input the name of the new readings file:\n";
+//    cin >> filenm;
 
-    get_wreadings(filenm, irkutsk);
+    get_wreadings("r.txt", irkutsk);
 
     cout << irkutsk << endl;
 }

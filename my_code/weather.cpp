@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "weather.h"
 
 using namespace std;
@@ -7,17 +8,31 @@ using namespace std;
 /*
  * A constructor for weather class.
  * */
+WReading::WReading(Date dt, double temp, double hum, double ws) :
+date(dt), temperature(temp), humidity(hum), windspeed(ws) {}
+
 Weather::Weather(std::string nm, GPS loc):
-station_nm(nm), my_loc(loc) {
-}
+station_nm(nm), my_loc(loc) {}
+
+Date::Date(int d, int m, int y) : day(d), month(m), year(y) {}
 
 ostream& operator<<(ostream& os, const GPS& gps){
     os << "(" << gps.latitude << "," << gps.longitude << ")";
     return os;
 }
 
+ostream& operator<<(ostream& os, const Date& date){
+    os << date.month << "." << date.day << "." << date.year; 
+    return os;
+}
+
 ostream& operator<<(ostream& os, const Weather& w){
     os << "Name: " << w.station_nm << ", Location: " << w.my_loc << ", Rating: " << w.rating << endl;
+    return os;
+}
+
+ostream& operator<<(ostream& os, const WReading& wr){
+    os << "Date: " << wr.date << ", Humidity: " << wr.humidity << ", Temperature: " << wr.temperature << ", Windspeed: " << wr.windspeed << endl;
     return os;
 }
 
@@ -31,4 +46,8 @@ void Weather::set_rating(int new_rating){
 
 string Weather::get_name() const {
     return station_nm;
+}
+
+void Weather::add_reading(WReading wr){
+    wreadings.push_back(wr); 
 }
