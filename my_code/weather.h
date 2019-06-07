@@ -14,6 +14,7 @@ struct GPS {
 
 std::ostream& operator<<(std::ostream& os, const GPS& gps);
 
+class Date;
 
 class WReading {
     friend std::ostream& operator<<(std::ostream& os, const WReading& wr);
