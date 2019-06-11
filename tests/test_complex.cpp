@@ -11,13 +11,16 @@ int main() {
     cout << "Input a complex number:\n";
     Complex c1;
     // get a complex from stdin:
-    cin >> c1;
-//    c1 = Complex(12,34);
-    if(!cin)
-    {
-        cerr << "Bad input format\n";
-        exit(1);
-    }
+//    cin >> c1;
+//
+//    if(!cin)
+//    {
+//        cerr << "Bad input format\n";
+//        exit(1);
+//    }
+    
+        c1 = Complex(12,34);
+    
         if(DEBUGG)
         {
             cout << "c1 = " << c1 << endl;
