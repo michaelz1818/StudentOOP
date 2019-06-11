@@ -31,27 +31,26 @@ istream& operator>> (istream& is, Complex& c) {
 }
 
 
-Complex::Complex(double real, double imag)
-: real{real}, imag{imag} {}
+Complex::Complex(double real, double imag) : real(real), imag(imag) {}
 
 
 Complex::operator bool() const {
     return ((real != 0) || (imag != 0));
 }
 
-Complex& Complex::operator++() {
+Complex& Complex::operator++() { //pre
     ++real;
     return (*this);
 }
 
-Complex Complex::operator++(int dummy) {
+Complex Complex::operator++(int dummy) { //post
     Complex temp(*this);
     real++;
     return temp;
 }
 
 Complex Complex::operator+(const Complex& c) {
-    Complex sum{real + c.real, imag + c.imag};
+    Complex sum = Complex(real + c.real, imag + c.imag);
     return sum;
 }
 
