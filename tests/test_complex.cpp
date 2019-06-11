@@ -12,6 +12,7 @@ int main() {
     Complex c1;
     // get a complex from stdin:
     cin >> c1;
+//    c1 = Complex(12,34);
     if(!cin)
     {
         cerr << "Bad input format\n";
@@ -37,6 +38,7 @@ int main() {
         // see if `Complex` subtraction works:
         c3 -= c2;
         assert(c3.get_real() >= c1.get_real() - 0.001 && c3.get_imag() >= c1.get_imag() - 0.001 && c3.get_real() <= c1.get_real() + 0.001 && c3.get_imag() <= c1.get_imag() + 0.001);
+//        assert(c1 == c3);
     
         Complex c4 = Complex();
         // test pre-increment:
