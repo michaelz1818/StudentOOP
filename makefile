@@ -26,12 +26,13 @@ $(TEST_DIR)/test_complex: $(STUDENT_DIR)/complex.cpp $(TEST_DIR)/test_complex.cp
 
 
 
-tests: test_hello test_basics test_pointers test_weather
+tests: test_hello test_basics test_pointers test_weather test_complex
 	tests/test_hello
 	tests/test_basics
 	tests/test_pointers
 	tests/test_weather
+    tests/test_complex
 
 prod: tests
-	- git commit -a -m "6/7 inclass assignment"
+	- git commit -a -m "6/11 inclass assignment"
 	git push origin master
