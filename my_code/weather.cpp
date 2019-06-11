@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "weather.h"
 #include "date.h"
 
@@ -47,4 +48,20 @@ string Weather::get_name() const {
 
 void Weather::add_reading(WReading wr){
     wreadings.push_back(wr); 
+}
+
+double WReading::get_heat_index() const {
+    return -42.379 + 2.04901523 * get_tempF() + 10.14333127 * humidity - .22475541 * get_tempF() * humidity - .00683783 * get_tempF() * get_tempF() - .05481717 * humidity * humidity + .00122874* get_tempF() * get_tempF() * humidity + .00085282 * get_tempF() * humidity * humidity - .00000199* get_tempF() * get_tempF() * humidity * humidity;
+}
+
+double WReading::get_wind_chill() const {
+    return 35.74 + (0.6215 * get_tempF()) - (35.75 * pow(windspeed, 0.16)) + (0.4275 * temperature * pow(windspeed, 0.16));
+}
+
+double WReading::get_tempF() const {
+    return (temperature * 9 / 5) + 32;
+}
+
+double WReading::get_tempC() const {
+    return temperature;
 }

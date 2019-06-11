@@ -20,6 +20,10 @@ class WReading {
     friend std::ostream& operator<<(std::ostream& os, const WReading& wr);
  public:
     WReading(Date dt, double temp, double hum, double ws);
+    double get_heat_index() const;
+    double get_wind_chill() const;
+    double get_tempF() const;
+    double get_tempC() const;
 
  private:
     Date date;

@@ -14,7 +14,7 @@ void get_wreadings(string filenm, Weather& w) {
         rfile.clear();
         cout << "Please check your file name and input again: " << endl;
         cin >> filenm;
-        rfile.open(filenm); 
+        rfile.open(filenm);
     }
     int m, d, y;
     double temp, hum, ws;
