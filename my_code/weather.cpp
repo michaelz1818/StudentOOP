@@ -47,8 +47,10 @@ void Image::copy_fields(const Image& rhs) {
     width = rhs.width;
     height = rhs.height;
     filename = rhs.filename;
-    image_buf = new char[image_sz()]; //note image_sz() should be after weight and height being reissued 
-    *image_buf = *rhs.image_buf;
+    image_buf = new char[image_sz()]; //note image_sz() should be after weight and height being reissued
+    for(int i = 0; i < image_sz(); ++i){
+        image_buf[i] = rhs.image_buf[i];
+    }
 }
 
 
