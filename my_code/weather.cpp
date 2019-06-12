@@ -7,6 +7,60 @@
 
 using namespace std;
 
+const double F_TO_C = 5 / 9;
+const double C_TO_F = 9 / 5;
+
+Image::Image(int w, int h, std::string flnm)
+: width(w), height(h)
+{
+    filename = flnm;
+    image_buf = new char[image_sz()];
+}
+
+// copy constructor:
+Image::Image(const Image& rhs) {
+    copy_fields(rhs); 
+}
+
+Image::~Image() {
+    if(image_buf != nullptr){
+        delete [] image_buf;
+    }
+}
+
+Image& Image::operator=(const Image& rhs) {
+    if(this != &rhs){
+        if(image_buf != nullptr){
+            delete [] image_buf;
+        }
+        copy_fields(rhs);
+    }
+    return *this;
+}
+
+int Image::image_sz() {
+    return width * height;
+}
+
+
+void Image::copy_fields(const Image& rhs) {
+    width = rhs.width;
+    height = rhs.height;
+    filename = rhs.filename;
+    image_buf = new char[image_sz()]; //note image_sz() should be after weight and height being reissued 
+    *image_buf = *rhs.image_buf;
+}
+
+
+/*
+ * Setting `display() = 0` here makes this an abstract
+ * class that can't be implemented.
+ * */
+string Image::display(std::string s) {
+    return "Displaying image " + s;
+}
+
+
 /*
  * A constructor for weather class.
  * */
@@ -59,9 +113,10 @@ double WReading::get_wind_chill() const {
 }
 
 double WReading::get_tempF() const {
-    return (temperature * 9 / 5) + 32;
+    return (temperature * C_TO_F) + 32;
 }
 
 double WReading::get_tempC() const {
     return temperature;
 }
+
