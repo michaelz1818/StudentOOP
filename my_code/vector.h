@@ -1,25 +1,17 @@
-//
-//  vector.hpp
-//  OOPSu19
-//
-//  Created by Michael Zhao on 6/13/19.
-//  Copyright © 2019 Michael Zhao. All rights reserved.
-//
-
 #ifndef vector_hpp
 #define vector_hpp
 
 
 const int DEF_CAPACITY = 10;
 
-class vector {
+class Vector {
 public:
-    vector();
+    Vector();
     
     // copy control:
-    vector(const vector& v2);
-    ~vector();
-    vector& operator=(const vector& v2);
+    Vector(const Vector& v2);
+    ~Vector();
+    Vector& operator=(const Vector& v2);
     
     void push_back(int val);
     int size() const { return sz; }
@@ -32,6 +24,6 @@ private:
 };
 
 
-void print_vector(vector v);
+void print_vector(Vector v);
 
 #endif /* vector_hpp */
