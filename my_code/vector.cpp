@@ -3,71 +3,50 @@
 
 using namespace std;
 
-void print_vector(Vector v) {
-    for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << " ";
-    }
-    cout << endl;
+void print_vector(const MyVec& v) {
 }
 
 
-Vector::Vector() {
-    sz = 0;
-    capacity = DEF_CAPACITY;
-    data = new int[DEF_CAPACITY];
+MyVec::MyVec() {
 }
 
-Vector::Vector(const Vector& v2) {
-    capacity = v2.capacity;
-    sz = v2.size();
-    data = new int[capacity];
-    // copy over existing data
-    for (int i = 0; i < size(); i++) {
-        data[i] = v2.data[i];
-    }
+MyVec::MyVec(const MyVec& v2) {
 }
 
-Vector::~Vector() {
-    delete[] data;
+MyVec::~MyVec() {
 }
 
-Vector& Vector::operator=(const Vector& v2) {
-    if (&v2 != this) {
-        delete[] data;
-        capacity = v2.capacity;
-        sz = v2.size();
-        data = new int[capacity];
-        // copy over existing data
-        for (int i = 0; i < size(); i++) {
-            data[i] = v2.data[i];
-        }
-    }
-    return *this;
+MyVec& MyVec::operator=(const MyVec& v2) {
 }
 
 
-void Vector::push_back(int val) {
-    if (sz == capacity) {
-        cout << "Increasing capacity\n";
-        // get new array of capacity * 2
-        capacity *= 2;
-        int* new_data = new int[capacity];
-        // copy over existing data
-        for (int i = 0; i < size(); i++) {
-            new_data[i] = data[i];
-        }
-        // delete old array
-        delete[] data;
-        // set pointer to new array
-        data = new_data;
-    }
-    data[sz++] = val;
+/*
+ * == is true when every element of the vectors are the same in
+ * the same order. (Thus they must be the same size.)
+ * */
+bool operator==(MyVec& v1, MyVec& v2) {
+    return true;
 }
 
-int Vector::operator[](int i) const {
-    return data[i];
+/*
+ * Puts an element at the back of a vector.
+ * */
+void MyVec::push_back(int val) {
 }
 
-int& Vector::operator[](int i) {
-    return data[i];
+/*
+ * this [] is for reading items from the MyVec:
+ * It returns the i-th element.
+ * */
+int MyVec::operator[](int i) const {
+    return 0;
+}
+
+/*
+ * this [] allows write access to items in the MyVec:
+ * It returns a reference to the i-th element.
+ * */
+int& MyVec::operator[](int i) {
+    int j = 0;
+    return j;
 }

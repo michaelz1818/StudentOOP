@@ -2,16 +2,17 @@
 #define vector_hpp
 
 
+
 const int DEF_CAPACITY = 10;
 
-class Vector {
+class MyVec {
 public:
-    Vector();
+    MyVec();
     
     // copy control:
-    Vector(const Vector& v2);
-    ~Vector();
-    Vector& operator=(const Vector& v2);
+    MyVec(const MyVec& v2);
+    ~MyVec();
+    MyVec& operator=(const MyVec& v2);
     
     void push_back(int val);
     int size() const { return sz; }
@@ -24,6 +25,8 @@ private:
 };
 
 
-void print_vector(Vector v);
+void print_vector(const MyVec& v);
+
+bool operator==(MyVec& v1, MyVec& v2);
 
 #endif /* vector_hpp */
