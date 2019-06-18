@@ -13,7 +13,7 @@ void print_vector(const MyVec& v) {
 MyVec::MyVec() : sz(0), capacity(DEF_CAPACITY), data(new int[DEF_CAPACITY]) {}
 
 MyVec::MyVec(const MyVec& v2) {
-    sz = v2.size();
+    sz = v2.sz;
     capacity = v2.capacity;
     data = new int[capacity];
     for(int i = 0; i < capacity; ++i){
@@ -28,7 +28,7 @@ MyVec::~MyVec() {
 MyVec& MyVec::operator=(const MyVec& v2) {
     if(this != &v2){
         if(data != nullptr) delete [] data;
-        sz = v2.size();
+        sz = v2.sz;
         capacity = v2.capacity;
         data = new int[capacity];
         for(int i = 0; i < capacity; ++i){
@@ -52,6 +52,18 @@ bool operator==(MyVec& v1, MyVec& v2) {
     }
     return true;
 }
+
+//bool operator==(MyVec& v1, MyVec& v2) {
+//    if(v1.size() == v2.size()){
+//        int i = 0;
+//        while (i < v1.size() && i >= 0) {
+//            if(v1[i] == v2[i]) ++i;
+//            else i = -1;
+//        }
+//        if(i != -1) return  true;
+//    }
+//    return false;
+//}
 
 /*
  * Puts an element at the back of a vector.
