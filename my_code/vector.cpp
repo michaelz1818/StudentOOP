@@ -4,19 +4,38 @@
 using namespace std;
 
 void print_vector(const MyVec& v) {
+    for(int i = 0; i < v.size(); ++i){
+        cout << v[i] << " ";
+    }
 }
 
 
-MyVec::MyVec() {
-}
+MyVec::MyVec() : sz(0), capacity(DEF_CAPACITY), data(new int[DEF_CAPACITY]) {}
 
 MyVec::MyVec(const MyVec& v2) {
+    sz = v2.size();
+    capacity = v2.capacity;
+    data = new int[capacity];
+    for(int i = 0; i < capacity; ++i){
+        data[i] = v2.data[i]; 
+    }
 }
 
 MyVec::~MyVec() {
+    if(data != nullptr) delete [] data;
 }
 
 MyVec& MyVec::operator=(const MyVec& v2) {
+    if(this != &v2){
+        if(data != nullptr) delete [] data;
+        sz = v2.size();
+        capacity = v2.capacity;
+        data = new int[capacity];
+        for(int i = 0; i < capacity; ++i){
+            data[i] = v2.data[i];
+        }
+    }
+    return *this;
 }
 
 
@@ -25,6 +44,12 @@ MyVec& MyVec::operator=(const MyVec& v2) {
  * the same order. (Thus they must be the same size.)
  * */
 bool operator==(MyVec& v1, MyVec& v2) {
+    if(v1.size() != v2.size()) return false;
+    else {
+        for(int i = 0; i < v1.size(); ++i){
+            if(v1[i] != v2[i]) return false;
+        }
+    }
     return true;
 }
 
@@ -32,6 +57,14 @@ bool operator==(MyVec& v1, MyVec& v2) {
  * Puts an element at the back of a vector.
  * */
 void MyVec::push_back(int val) {
+    if(sz == capacity){
+        capacity *= 2;
+        int* temp = new int[capacity];
+        for(int i = 0; i < sz; ++i) temp[i] = data[i];
+        delete [] data;
+        data = temp;
+    }
+    data[sz++] = val;
 }
 
 /*
@@ -39,7 +72,7 @@ void MyVec::push_back(int val) {
  * It returns the i-th element.
  * */
 int MyVec::operator[](int i) const {
-    return 0;
+    return data[i];
 }
 
 /*
@@ -47,6 +80,5 @@ int MyVec::operator[](int i) const {
  * It returns a reference to the i-th element.
  * */
 int& MyVec::operator[](int i) {
-    int j = 0;
-    return j;
+    return data[i];
 }
