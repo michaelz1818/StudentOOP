@@ -28,14 +28,19 @@ test_vector: $(TEST_DIR)/test_vector
 
 $(TEST_DIR)/test_vector: $(STUDENT_DIR)/vector.cpp $(TEST_DIR)/test_vector.cpp
 
+test_llist: $(TEST_DIR)/test_llist
+
+$(TEST_DIR)/test_llist: $(STUDENT_DIR)/llist.cpp $(TEST_DIR)/test_llist.cpp
 
 
-tests: test_hello test_basics test_pointers test_vector
+
+tests: test_hello test_basics test_pointers test_vector test_llist
 	tests/test_hello
 	tests/test_basics
 	tests/test_pointers
 	tests/test_vector
+	tests/test_llist
 
 prod: tests
-	- git commit -a -m "Assignment 9 MyVec class"
+	- git commit -a -m "6/20 in class assignment llist"
 	git push origin master
