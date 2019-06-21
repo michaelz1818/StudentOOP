@@ -59,3 +59,96 @@ Node* last(Node* head) {
     if(!head -> next) return head;
     return last(head->next); 
 }
+
+/*
+ * These are coming:
+ */
+
+/*
+ * Delete the first node and attach head to the 2nd node:
+ * */
+bool del_head(Node*& head){
+    if(!head) return false;
+    Node* delHead = head;
+    head = head->next;
+    delete delHead;
+    return true;
+}
+
+/*
+ * Delete the last node and set prev->next to nullptr:
+ * */
+//bool del_tail(Node*& head, Node*& prev){
+//    if(!head) return false;
+//    if(!head->next){
+//        prev -> next = nullptr;
+//        delete head;
+//        return true;
+//    } else {
+//        return del_tail(head->next, head);
+//    }
+//}
+
+bool del_tail(Node*& head){
+    if(!head) return false;
+    if(!head->next){
+        delete head;
+        head = nullptr; 
+        return true;
+    } else {
+        return del_tail(head->next);
+    }
+}
+
+/*
+ * Duplicate the entire list -- you must not share memory!
+ * */
+Node* duplicate(Node* head){
+    if(!head) return nullptr;
+    Node* dupList = new Node(head->data);
+    Node* dupCurr = dupList;
+    Node* curr = head;
+    while(curr->next){
+        dupCurr->next = new Node(curr->next->data);
+        curr = curr->next;
+        dupCurr = dupCurr->next;
+    }
+    return dupList;
+}
+
+/*
+ * Reverse the list: return a brand new list with everything reversed.
+ * */
+//THE FOLLOWING CODE REVERSED THE ORIGINAL LIST
+//Node* reverse(Node* curr, Node* new_next){
+//    if(!curr) return nullptr;
+//    if(!curr->next){
+//        curr->next = new_next;
+//        return curr;
+//    } else {
+//        Node* temp = curr->next;
+//        curr->next = new_next;
+//        return reverse(temp, curr);
+//    }
+//}
+
+Node* reverse(Node* curr, Node* new_next){
+    if(!curr) return nullptr;
+    Node* thisNode = new Node(curr->data, new_next);
+    if(!curr->next) return thisNode;
+    else return reverse(curr->next, thisNode); 
+}
+
+/*
+ * Join two lists: tack list 2 onto the end of list 1:
+ * Use existing memory.
+ * */
+Node* join(Node*& list1, Node* list2){
+    if(!list1 || !list2) return nullptr;
+    Node* currL1 = list1;
+    while(currL1 -> next){
+        currL1 = currL1 -> next;
+    }
+    currL1->next = list2;
+    return list1; 
+}
