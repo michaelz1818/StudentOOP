@@ -24,7 +24,6 @@ void add_at_end(Node*& head, int d) {
 //        curr = curr->next;
 //    }
 //    curr->next = new Node(d);
-    if(!head->next) head->next = new Node(d);
     else add_at_end(head->next, d);
 }
 
@@ -46,8 +45,7 @@ void print_list(ostream& os, const Node* curr) {
  * Add a node at the front of a linked list.
  * */
 void add_at_front(Node*& head, int d) {
-    if(!head) head = new Node(d);
-    else head = new Node(d, head);
+    head = new Node(d, head);
 }
 
 
@@ -93,7 +91,7 @@ bool del_tail(Node*& head){
     if(!head) return false;
     if(!head->next){
         delete head;
-        head = nullptr; 
+        head = nullptr;
         return true;
     } else {
         return del_tail(head->next);
@@ -105,15 +103,16 @@ bool del_tail(Node*& head){
  * */
 Node* duplicate(Node* head){
     if(!head) return nullptr;
-    Node* dupList = new Node(head->data);
-    Node* dupCurr = dupList;
-    Node* curr = head;
-    while(curr->next){
-        dupCurr->next = new Node(curr->next->data);
-        curr = curr->next;
-        dupCurr = dupCurr->next;
-    }
-    return dupList;
+//    Node* dupList = new Node(head->data);
+//    Node* dupCurr = dupList;
+//    Node* curr = head;
+//    while(curr->next){
+//        dupCurr->next = new Node(curr->next->data);
+//        curr = curr->next;
+//        dupCurr = dupCurr->next;
+//    }
+//    return dupList;
+    return new Node(head->data, duplicate(head->next));
 }
 
 /*
@@ -133,10 +132,12 @@ Node* duplicate(Node* head){
 //}
 
 Node* reverse(Node* curr, Node* new_next){
-    if(!curr) return nullptr;
-    Node* thisNode = new Node(curr->data, new_next);
-    if(!curr->next) return thisNode;
-    else return reverse(curr->next, thisNode); 
+//    if(!curr) return nullptr;
+//    Node* thisNode = new Node(curr->data, new_next);
+//    if(!curr->next) return thisNode;
+//    else return reverse(curr->next, thisNode);
+    if(!curr) return new_next;
+    else return reverse(curr->next, new Node(curr->data, new_next));
 }
 
 /*
@@ -144,11 +145,16 @@ Node* reverse(Node* curr, Node* new_next){
  * Use existing memory.
  * */
 Node* join(Node*& list1, Node* list2){
-    if(!list1 || !list2) return nullptr;
-    Node* currL1 = list1;
-    while(currL1 -> next){
-        currL1 = currL1 -> next;
-    }
-    currL1->next = list2;
-    return list1; 
+    if(!list1 && !list2) return nullptr;
+    if(!list1) return list2;
+//    Node* currL1 = list1;
+//    while(currL1 -> next){
+//        currL1 = currL1 -> next;
+//    }
+//    currL1->next = list2;
+//    return list1;
+    
+//    list1 -> next = join(list1 -> next, list2);
+    last(list1) -> next = list2;
+    return list1;
 }
