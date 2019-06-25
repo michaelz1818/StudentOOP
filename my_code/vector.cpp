@@ -9,7 +9,7 @@ void print_vector(const MyVec& v) {
     }
 }
 
-MyVec::Iterator::Iterator(int* p) {ipr = p;}
+MyVec::Iterator::Iterator(int* p) : ipr(p){}
 
 MyVec::Iterator& MyVec::Iterator::operator++(){
     ++ipr;
