@@ -20,9 +20,9 @@ public:
         int* ipr;
         
     public:
-        Iterator(int* p) : ipr(p) {}
+        Iterator(int*); 
         Iterator& operator++();
-        int operator*() {return *ipr;}
+        int operator*(); 
     };
     
     MyVec();
