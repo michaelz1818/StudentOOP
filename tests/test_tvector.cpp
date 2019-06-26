@@ -15,6 +15,7 @@ const int VEC_SZ = 20;
 
 int main() {
     MyVec<int> iv = MyVec<int>();
+
     for (int i = 0; i < VEC_SZ; i++) {
         iv.push_back(i);
         copy_vector(iv);
@@ -40,8 +41,8 @@ int main() {
     assert(v2 == v3);
     print_vector(v2);
     
-    for (int i : v3) {
-        assert((i % 9) == 0);
+    for (int i = 0; i < v3.size(); i++) {
+        assert((v3[i] % 9) == 0);
     }
     
     MyVec<string> sv = MyVec<string>(10, "Hello");
