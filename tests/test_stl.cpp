@@ -13,18 +13,41 @@ using namespace std;
 /*
  * print_vec to print vectors
  * */
+template <typename T>
+void print_vec(const string& vecName, const vector<T>& vec){
+    cout << "Vector" << vecName << ": ";
+    for(const T& obj : vec){
+        cout << obj << " ";
+    }
+    cout << endl; 
+}
 
 /*
  * Let's make a template for a `print_list` that can handle
  * lists of any type:
  * Templates are the C++ feature that enable generic programming.
  * */
+template <typename T>
+void print_list(const string& lstName, const list<T>& lst){
+    cout << "List " << lstName << ": ";
+    for(const T& obj : lst){
+        cout << obj << " ";
+    }
+    cout << endl;
+}
 
 /*
  * But, we can go even more generic, and make a `print` that can print
  * *containers* of any sequential type:
  * */
-
+template <typename T>
+void print(const string& uName, const T& cont){
+    cout << uName << ": ";
+    for(const auto& obj : cont){
+        cout << obj << " ";
+    }
+    cout << endl;
+}
 
 /*
  * A Cat class just so we can show these work on our types:
@@ -64,9 +87,9 @@ int main() {
      * We will create it with a half-open range, and then sort it.
      * */
     vector<char> cvec(s2, s2 + dennislen);
-    //    print_vec("cvec", cvec);
+    print_vec("cvec", cvec);
     sort(cvec.begin(), cvec.end());
-    //    print_vec("sorted cvec", cvec);
+    print_vec("sorted cvec", cvec);
     
     /*
      * Create a `char` list:
@@ -79,8 +102,8 @@ int main() {
      * reverses an iterable structure:
      * */
     reverse(clist.begin(), clist.end());
-    //    print_list("clist reversed", clist);
-    //    print_list("clist2 not reversed", clist2);
+        print_list("clist reversed", clist);
+        print_list("clist2 not reversed", clist2);
     
     /*
      * But even after `clist` is reversed, `clist` and
@@ -98,7 +121,7 @@ int main() {
      * */
     Cat catptr[] = { Cat(), Cat(), Cat() };
     list<Cat> catlist(catptr, catptr + 3);
-    //    print_list("Cat list", catlist);
+        print_list("Cat list", catlist);
     
     /*
      * Testing an int list:
@@ -109,15 +132,15 @@ int main() {
     /*
      * Our print can work for lists as well as vectors:
      * */
-    //    print("print: ilist", ilist);
-    //    print("print: sorted cvec", cvec);
+        print("print: ilist", ilist);
+        print("print: sorted cvec", cvec);
     /*
      * `sort()` does not work for lists, since they aren't random access.
      * Thus lists have their own `sort()` method, called below:
      * This *won't* work: `sort(ilist.begin(), ilist.end());`
      * */
-    //    ilist.sort();
-    //    print("ilist sorted", ilist);
+        ilist.sort();
+        print("ilist sorted", ilist);
     
     /*
      * Let's experiment with *iterators* a bit!
