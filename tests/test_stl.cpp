@@ -14,7 +14,7 @@ using namespace std;
  * print_vec to print vectors
  * */
 template <typename T>
-void print_vec(const string& vecName, const vector<T>& vec){
+void print_vec(const string& vecName, const vector<T>& vec){ //need const string parameter
     cout << "Vector" << vecName << ": ";
     for(const T& obj : vec){
         cout << obj << " ";
