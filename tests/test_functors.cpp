@@ -35,7 +35,8 @@ public:
         }
     }
     
-    long long int operator()(long long int n) {
+    long long int operator()(int n) {
+        if(n < 0 || n > MAX_FIB) throw NoNegative(n);
         if(fibs[n] == NOT_CALCED){
             if (n <= 1) fibs[n] = 1;
             else fibs[n] = operator()(n - 1) + operator()(n - 2);
@@ -74,7 +75,7 @@ double square_func(double d, function<double(double)> f) {
 
 
 int main() {
-    const long long int FIB_NUM = 46;
+    const long long int FIB_NUM = -1;
     
     // first functors:
     Sin sine = Sin();
