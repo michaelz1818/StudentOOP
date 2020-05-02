@@ -15,14 +15,14 @@ int main() {
     Bst<int>* iroot = new Bst<int>(40);
     assert(iroot->get_val() == 40);
     print_bst(*iroot);
-    
-    
+
+
      iroot->insert(20);
      iroot->insert(60);
      print_bst(*iroot);
       assert(iroot->min() == 20);
       assert(iroot->max() == 60);
-    
+
      iroot->insert(10);
      iroot->insert(30);
      iroot->insert(50);
@@ -30,7 +30,7 @@ int main() {
      print_bst(*iroot);
       assert(iroot->min() == 10);
       assert(iroot->max() == 70);
-    
+
      iroot->insert(5);
      iroot->insert(25);
      iroot->insert(45);
@@ -38,24 +38,24 @@ int main() {
      print_bst(*iroot);
       assert(iroot->min() == 5);
       assert(iroot->max() == 75);
-    
+
      Bst<int>* result = iroot->search(45);
      assert(result->get_val() == 45);
      result = iroot->search(95);
      assert(result == nullptr);
-    
+
      Bst<int>* pred45 = iroot->predecessor(45);
      assert(pred45->get_val() == 40);
-    
+
      Bst<int>* succ45 = iroot->successor(45);
      assert(succ45->get_val() == 50);
-     
-     
+
+
     Bst<string>* sroot = new Bst<string>("Daniel");
     assert(sroot->get_val() == "Daniel");
     print_bst(*sroot);
-    
-    
+
+
      sroot->insert("Daniel");
      sroot->insert("Raj");
      print_bst(*sroot);
@@ -65,8 +65,8 @@ int main() {
      sroot->insert("Raymond");
      print_bst(*sroot);
       assert(sroot->max() == "Raymond");
-    
+
      Bst<string>* sresult = sroot->search("Raj");
      assert(sresult->get_val() == "Raj");
-    
+
 }

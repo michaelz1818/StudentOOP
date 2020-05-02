@@ -92,7 +92,14 @@ Complex& Complex::operator-=(const Complex& c){
     return *this;
 }
 
+//Complex Complex::operator*(const int i){
+//    Complex result(i * real, i * imag);
+//    return result;
+//}
+
 Complex Complex::operator*(const int i){
-    Complex result(i * real, i * imag);
-    return result; 
+    Complex result(*this);
+    result.real *= i;
+    result.imag *= i; 
+    return result;
 }

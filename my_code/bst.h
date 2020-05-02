@@ -3,38 +3,58 @@
 
 #include <iostream>
 
-void indent(int level) {
-    // indent more at each level:
-    for (int i = 0; i < level; i++) std::cout << "  ";
-}
+//void indent(int level) {
+//    // indent more at each level:
+//    for (int i = 0; i < level; i++) std::cout << "  ";
+//}
 
 template <typename T>
 class Bst {
-    friend void print_bst(const Bst<T>& bst, int level=0) {
-        indent(level);
-        level++;
-        
-        std::cout << "data: " << bst.data << std::endl;
-        indent(level + 1);
-        std::cout << "left: ";
-        
-        if (!bst.left) std::cout << "nullptr\n";
-        else {
-            std::cout << "\n";
-            indent(level);
-            print_bst(*bst.left, level);
+    friend void indent(const Bst<T>& bst){
+        if(!bst.parent) return;
+        else{
+            std::cout << "\t\t";
+            indent(*bst.parent);
         }
-        indent(level + 1);
-        std::cout << "right: ";
-        if (!bst.right) std::cout << "nullptr\n";
-        else {
-            std::cout << "\n";
-            indent(level);
-            print_bst(*bst.right, level);
-        }
-        std::cout << std::endl;
     }
     
+    friend void print_bst(const Bst<T>& bst){
+        indent(bst);
+        std::cout << "Node: " << bst.data << std::endl;
+        indent(bst);
+        std::cout << "\tLeft: \n";
+        if(!bst.left){indent(bst); std::cout << "\t\tNode:NULL\n";}
+        else print_bst(*bst.left);
+        indent(bst);
+        std::cout << "\tRight: \n";
+        if(!bst.right){indent(bst); std::cout << "\t\tNode: NULL\n";}
+        else print_bst(*bst.right);
+    }
+//    friend void print_bst(const Bst<T>& bst, int level=0) {
+//        indent(level);
+//        level++;
+//
+//        std::cout << "data: " << bst.data << std::endl;
+//        indent(level + 1);
+//        std::cout << "left: ";
+//
+//        if (!bst.left) std::cout << "nullptr\n";
+//        else {
+//            std::cout << "\n";
+//            indent(level);
+//            print_bst(*bst.left, level);
+//        }
+//        indent(level + 1);
+//        std::cout << "right: ";
+//        if (!bst.right) std::cout << "nullptr\n";
+//        else {
+//            std::cout << "\n";
+//            indent(level);
+//            print_bst(*bst.right, level);
+//        }
+//        std::cout << std::endl;
+//    }
+//
 public:
     Bst(T d, Bst* p=nullptr, Bst* l=nullptr, Bst* r=nullptr)
     : data(d), parent(p), left(l), right(r) {}
@@ -47,9 +67,9 @@ public:
     }
     
     Bst<T>* insert(const T d) {
-        if(d < this->data){
-            if(this->left == nullptr) this->left = new Bst<T>(d, this);
-            else this->left->insert(d);
+        if(d < data){
+            if(left == nullptr) left = new Bst<T>(d, this);
+            else left->insert(d);
         } else if (d > this->data) {
             if(this->right == nullptr) this->right = new Bst<T>(d, this);
             else this->right->insert(d);

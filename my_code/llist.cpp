@@ -74,7 +74,8 @@ bool del_head(Node*& head){
 }
 
 /*
- * Delete the last node and set prev->next to nullptr:
+ * Delete the last node and
+ set prev->next to nullptr://THIS IS NOT NECESSARY - YOU DELETE IT YOU GET NULL
  * */
 //bool del_tail(Node*& head, Node*& prev){
 //    if(!head) return false;
@@ -97,6 +98,22 @@ bool del_tail(Node*& head){
         return del_tail(head->next);
     }
 }
+
+void del_list(Node*& head){
+    if(!head) return;
+    del_list(head->next);
+    delete head;
+}
+
+//bool del_tail(Node*& head){
+//    if(!head) return false;
+//    else{
+//        Node* lastp = last(head);
+//        delete lastp;
+//        lastp = nullptr;
+//        return true;
+//    }
+//}
 
 /*
  * Duplicate the entire list -- you must not share memory!
